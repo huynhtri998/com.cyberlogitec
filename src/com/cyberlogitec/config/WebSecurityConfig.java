@@ -13,42 +13,43 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.cyberlogitec.service.UserDetailsServiceImpl;
 
-
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages= {"com.cyberlogitec"})
+@ComponentScan(basePackages = { "com.cyberlogitec" })
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-        .authorizeRequests()
-            .antMatchers("/css/**","/img/**","/register").permitAll() 
-            .antMatchers("/","/profile").hasAnyRole("USER") 
-            .anyRequest()
-            .authenticated()
-            .and()
-        .formLogin()
-            .loginPage("/login") 
-            .loginProcessingUrl("/doLogin")
-            .usernameParameter("username")
-            .passwordParameter("password")
-            .defaultSuccessUrl("/profile")
-            .permitAll()
-            .and()
-        .csrf()
-            .disable();
-	}
+	
+	  @Override protected void configure(HttpSecurity http) throws Exception {
+	  http.authorizeRequests() .antMatchers("/css/**", "/img/**", "/fonts/**","/js/**", "/swf/**", "/common/**", "/registerUser") 
+	  .permitAll()
+	  .antMatchers("/", "/smartphone", "/smartphonecatalog", "/smartphonedetail","/userinformation")
+	  .hasAnyRole("USER", "ADMIN") 
+	  .anyRequest()
+	  .authenticated() 
+	  .and() 
+	  .formLogin() 
+	  .loginPage("/login")
+	  .loginProcessingUrl("/doLogin") 
+	  .usernameParameter("username")
+	  .passwordParameter("password") 
+	  .defaultSuccessUrl("/smartphone")
+	  .permitAll() 
+	  .and()
+	  .csrf() 
+	  .disable(); 
+	  }
+	 
+
 }

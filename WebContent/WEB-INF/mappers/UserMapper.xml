@@ -9,8 +9,8 @@
 	</select>
 	
 	<insert id="addUser" parameterType="User">
-		INSERT INTO User(username,password,rolename)
-		VALUES (#{username},#{password},#{rolename})
+		INSERT INTO User(name,username,password,phone,email,imageURL,role)
+		VALUES (#{name},#{userName},#{password},#{phone},#{email},#{imageURL},#{role})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">

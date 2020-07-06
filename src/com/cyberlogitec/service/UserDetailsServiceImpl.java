@@ -8,14 +8,17 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cyberlogitec.dao.UserDao;
 import com.cyberlogitec.model.User;
+import com.cyberlogitec.utils.EncrytedPasswordUtils;
 
 
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService{
+	
 	@Autowired
 	private UserDao userDAO;
 	
@@ -29,6 +32,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         ArrayList<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         grantList.add(new SimpleGrantedAuthority("ROLE_"+user.getRole()));
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),grantList);
+        return new org.springframework.security.core.userdetails.User(user.getUserName(),EncrytedPasswordUtils.encrytePassword(user.getPassword()),grantList);
     }
 }

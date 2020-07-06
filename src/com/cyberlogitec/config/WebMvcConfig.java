@@ -15,7 +15,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages= {"com.cyberlogitecc"})
+@ComponentScan(basePackages= {"com.cyberlogitec"})
 public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setApplicationContext(this.applicationContext);
 		templateResolver.setPrefix("/WEB-INF/views/");
-		templateResolver.setSuffix(".html");
+		templateResolver.setSuffix(".jsp");
 		templateResolver.setTemplateMode(TemplateMode.HTML);
 		templateResolver.setCacheable(true);
 		return templateResolver;

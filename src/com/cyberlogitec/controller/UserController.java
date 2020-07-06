@@ -24,21 +24,29 @@ public class UserController {
 		return "login";
 	}
 	
-	
-	@GetMapping(value= {"/","/profile"})
-	public String viewProfile(Model model, Authentication auth) {
+	@GetMapping(value= {"/","/userinformation"})
+	public String userInformation(Model model, Authentication auth) {
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		String username = userDetails.getUsername();
 		
 		User user = userService.getUserByUserName(username);
 		model.addAttribute("userProfile",user);
-		return "profile";
+		return "userinformation";
 	}
 	
-	@GetMapping("/register")
-	public String register(Model model) {
-		model.addAttribute("userForm", new UserForm());
-		return "register";
+	@GetMapping(value= {"/smartphone"})
+	public String smartPhone(Model model) {
+		return "smartphone";
+	}
+	
+	@GetMapping(value= {"/smartphonecatalog"})
+	public String smartPhoneCatalog(Model model) {
+		return "smartphonecatalog";
+	}
+	
+	@GetMapping(value= {"/smartphonedetail"})
+	public String smartPhoneDetail(Model model) {
+		return "smartphonedetail";
 	}
 	
 	@PostMapping("/registerUser")
@@ -58,8 +66,7 @@ public class UserController {
 			model.addAttribute("errorMessage","Username is existed!");
 			return "register";
 		}
-		String role = "USER";
-		User user = new User(name, userName, password, phone, email, imgURL, role);
+		User user = new User(name, userName, password, phone, email, imgURL);
 		userService.addUser(user);
 		return "redirect:/login";
 	}

@@ -5,6 +5,7 @@
 		<setting name="logImpl" value="LOG4J"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.cyberlogitec.sys.model.User" alias="User" />
+		<typeAlias type="com.cyberlogitec.model.User" alias="User" />
+		<typeAlias type="com.cyberlogitec.model.UserForm" alias="UserForm" />
 	</typeAliases>
 </configuration>

@@ -43,6 +43,84 @@
 		<script th:src="@{/js/html5shiv.min.js}"></script>
 		<script th:src="@{/js/respond.min.js}"></script>
 		<![endif]-->
+		<style>
+body {
+	background: whitesmoke;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+	max-width: 960px;
+	margin: 30px auto;
+	padding: 20px;
+}
+
+.avatar-upload {
+	position: relative;
+	max-width: 205px;
+	margin: 10px auto;
+}
+
+.avatar-upload .avatar-edit {
+	position: absolute;
+	right: 12px;
+	z-index: 1;
+	top: 10px;
+}
+
+.avatar-upload .avatar-edit input {
+	display: none;
+}
+
+.avatar-upload .avatar-edit input+label {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	margin-bottom: 0;
+	border-radius: 100%;
+	background: #FFFFFF;
+	border: 1px solid transparent;
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+	cursor: pointer;
+	font-weight: normal;
+	transition: all 0.2s ease-in-out;
+}
+
+.avatar-upload .avatar-edit input+label:hover {
+	background: #f1f1f1;
+	border-color: #d6d6d6;
+}
+
+.avatar-upload .avatar-edit input+label:after {
+	content: "\f040";
+	font-family: 'FontAwesome';
+	color: #757575;
+	position: absolute;
+	top: 10px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	margin: auto;
+}
+
+.avatar-upload .avatar-preview {
+	width: 192px;
+	height: 192px;
+	position: relative;
+	border-radius: 100%;
+	border: 6px solid #F8F8F8;
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-upload .avatar-preview>div {
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 
 <body class="no-skin">
@@ -164,9 +242,8 @@
 
 					<li class="light-blue dropdown-modal"><a
 						data-toggle="dropdown" href="#" class="dropdown-toggle"> <img
-							class="nav-user-photo" th:src="@{/img/user.jpg}"
-							alt="Jason's Photo" /> <span class="user-info"> <small>Welcome,</small>
-								Jason
+							class="nav-user-photo" th:src="@{/img/' + ${userProfile.imageURL } + '}"
+							alt="Jason's Photo" /> <span class="user-info"> <small th:text="${userProfile.name}">Welcome,</small>
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a>
 
@@ -289,9 +366,16 @@
 										<form action="" method="post">
 											<div class="col-xs-12 col-sm-3 center">
 												<div>
-													<span class="profile-picture">
-														<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-													</span>
+													<div class="avatar-upload">
+														<div class="avatar-edit">
+															<input type='file' id="imageUpload" name="imageURL"
+																accept=".png, .jpg, .jpeg" /> <label for="imageUpload"></label>
+														</div>
+														<div class="avatar-preview">
+															<div id="imagePreview" th:style="'background-image:url(/com.cyberlogitec/img/' + ${userProfile.imageURL} + ');'">
+															</div>
+														</div>
+													</div>
 	
 													<div class="space-4"></div>
 	
@@ -300,7 +384,7 @@
 															<a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
 																<i class="ace-icon fa fa-circle light-green"></i>
 																&nbsp;
-																<span class="white">Alex M. Doe</span>
+																<span th:text="${userProfile.name}" class="white"></span>
 															</a>		
 														</div>
 													</div>
@@ -319,49 +403,26 @@
 														<div class="profile-info-name"> Username </div>
 	
 														<div class="profile-info-value">
-															<span class="editable" id="username">alexdoe</span>
+															<span class="editable" id="username"><input disabled="disabled"
+														type="text" name="name" th:field="*{userProfile.userName}" class="form-control" placeholder="Full Name" /></span>
 														</div>
 													</div>
 	
 													<div class="profile-info-row">
-														<div class="profile-info-name"> Location </div>
+														<div class="profile-info-name"> Phone </div>
 	
 														<div class="profile-info-value">
-															<i class="fa fa-map-marker light-orange bigger-110"></i>
-															<span class="editable" id="country">Netherlands</span>
-															<span class="editable" id="city">Amsterdam</span>
+															<span class="editable" id="city"><input
+														type="text" name="name" th:field="*{userProfile.phone}" class="form-control" placeholder="Full Name" /></span>
 														</div>
 													</div>
 	
 													<div class="profile-info-row">
-														<div class="profile-info-name"> Age </div>
+														<div class="profile-info-name"> Email </div>
 	
 														<div class="profile-info-value">
-															<span class="editable" id="age">38</span>
-														</div>
-													</div>
-	
-													<div class="profile-info-row">
-														<div class="profile-info-name"> Joined </div>
-	
-														<div class="profile-info-value">
-															<span class="editable" id="signup">2010/06/20</span>
-														</div>
-													</div>
-	
-													<div class="profile-info-row">
-														<div class="profile-info-name"> Last Online </div>
-	
-														<div class="profile-info-value">
-															<span class="editable" id="login">3 hours ago</span>
-														</div>
-													</div>
-	
-													<div class="profile-info-row">
-														<div class="profile-info-name"> About Me </div>
-	
-														<div class="profile-info-value">
-															<span class="editable" id="about">Editable as WYSIWYG</span>
+															<span class="editable" id="age"><input
+														type="text" name="name" th:field="*{userProfile.email}" class="form-control" placeholder="Full Name" /></span>
 														</div>
 													</div>
 												</div>
@@ -438,6 +499,29 @@
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$("#imagePreview").css("background-image",
+						"url(" + e.target.result + ")");
+				$("#imagePreview").hide();
+				$("#imagePreview").fadeIn(650);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$("#imageUpload").change(function() {
+		readURL(this);
+	});
+	jQuery(function($) {
+		$(document).on('click', '.toolbar a[data-target]', function(e) {
+			e.preventDefault();
+			var target = $(this).data('target');
+			$('.widget-box.visible').removeClass('visible');//hide others
+			$(target).addClass('visible');//show target
+		});
+	});
 		jQuery(function($) {
 			$('#sidebar2').insertBefore('.page-content');
 

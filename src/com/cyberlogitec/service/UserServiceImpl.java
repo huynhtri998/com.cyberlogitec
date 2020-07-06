@@ -11,6 +11,7 @@ import com.cyberlogitec.model.User;
 
 @Service
 public class UserServiceImpl implements UserService{
+	
 	@Autowired
 	private UserDao userDAO;
 	
@@ -19,8 +20,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByUserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDAO.getUserByUserName(username);
 	}
 
 	@Override
@@ -31,8 +31,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setRole("USER");
+		return userDAO.addUser(user);
 	}
 	
 	

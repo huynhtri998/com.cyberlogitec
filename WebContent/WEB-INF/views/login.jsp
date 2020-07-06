@@ -151,16 +151,16 @@ body {
 
 										<div class="space-6"></div>
 
-										<form>
+										<form th:action="@{/doLogin}" method="post">
 											<fieldset>
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="text" class="form-control" placeholder="Username" />
+														type="text" class="form-control" name="username" placeholder="Username" />
 														<i class="ace-icon fa fa-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="password" class="form-control"
+														type="password" name="password" class="form-control"
 														placeholder="Password" /> <i class="ace-icon fa fa-lock"></i>
 												</span>
 												</label>
@@ -172,7 +172,7 @@ body {
 														class="ace" /> <span class="lbl"> Remember Me</span>
 													</label>
 
-													<button type="button"
+													<button type="submit"
 														class="width-35 pull-right btn btn-sm btn-primary">
 														<i class="ace-icon fa fa-key"></i> <span
 															class="bigger-110">Login</span>
@@ -208,12 +208,12 @@ body {
 											Registration
 										</h4>
 
-										<form>
+										<form th:action="@{/registerUser}" method="post">
 											<fieldset>
 												<label class="block clearfix">
 													<div class="avatar-upload">
 														<div class="avatar-edit">
-															<input type='file' id="imageUpload"
+															<input type='file' id="imageUpload" name="imageURL"
 																accept=".png, .jpg, .jpeg" /> <label for="imageUpload"></label>
 														</div>
 														<div class="avatar-preview">
@@ -224,33 +224,33 @@ body {
 													</div>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="email" class="form-control" placeholder="Email" />
+														type="email" class="form-control" name="email" placeholder="Email" />
 														<i class="ace-icon fa fa-envelope"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="text" class="form-control" placeholder="Username" />
+														type="text" class="form-control" name="userName" placeholder="Username" />
 														<i class="ace-icon fa fa-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="password" class="form-control"
+														type="password" name="password" class="form-control"
 														placeholder="Password" /> <i class="ace-icon fa fa-lock"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="password" class="form-control"
+														type="password" name="confirmPassword" class="form-control"
 														placeholder="Repeat password" /> <i
 														class="ace-icon fa fa-retweet"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="text" class="form-control" placeholder="Full Name" />
+														type="text" name="name" class="form-control" placeholder="Full Name" />
 														<i class="ace-icon fa fa-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="text" class="form-control" placeholder="Phone" /> <i
+														type="text" class="form-control" name="phone" placeholder="Phone" /> <i
 														class="ace-icon fa fa-phone"></i>
 												</span>
 												</label>
@@ -263,7 +263,7 @@ body {
 															class="bigger-110">Reset</span>
 													</button>
 
-													<button type="button"
+													<button type="submit"
 														class="width-65 pull-right btn btn-sm btn-success">
 														<span class="bigger-110">Register</span> <i
 															class="ace-icon fa fa-arrow-right icon-on-right"></i>
