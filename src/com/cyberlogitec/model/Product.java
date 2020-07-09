@@ -1,85 +1,86 @@
 package com.cyberlogitec.model;
 
 public class Product {
-	private Integer id;
-	private String name;
-	private Float price;
-	private Float salePrice;
-	private String imageURL;
-	private String content;
-	private Integer categoryid;
+	private Integer productId;
+	private String productName;
+	private Float productPrice;
+	private Float productSalePrice;
+	private String productImageURL;
+	private String productContent;
+	private Integer categoryId;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(Integer id, String name, Float price, Float salePrice, String imageURL, String content,
-			Integer categoryid) {
+	public Product(Integer productId, String productName, Float productPrice, Float productSalePrice,
+			String productImageURL, String productContent, Integer categoryId) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.salePrice = salePrice;
-		this.imageURL = imageURL;
-		this.content = content;
-		this.categoryid = categoryid;
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productSalePrice = productSalePrice;
+		this.productImageURL = productImageURL;
+		this.productContent = productContent;
+		this.categoryId = categoryId;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public Float getPrice() {
-		return price;
+	public Float getProductPrice() {
+		return productPrice;
 	}
 
-	public void setPrice(Float price) {
-		this.price = price;
+	public void setProductPrice(Float productPrice) {
+		this.productPrice = productPrice;
 	}
 
-	public Float getSalePrice() {
-		return salePrice;
+	public Float getProductSalePrice() {
+		return productSalePrice;
 	}
 
-	public void setSalePrice(Float salePrice) {
-		this.salePrice = salePrice;
+	public void setProductSalePrice(Float productSalePrice) {
+		this.productSalePrice = productSalePrice;
 	}
 
-	public String getImageURL() {
-		return imageURL;
+	public String getProductImageURL() {
+		return productImageURL;
 	}
 
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+	public void setProductImageURL(String productImageURL) {
+		this.productImageURL = productImageURL;
 	}
 
-	public String getContent() {
-		return content;
+	public String getProductContent() {
+		return productContent;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setProductContent(String productContent) {
+		this.productContent = productContent;
 	}
 
-	public Integer getCategoryid() {
-		return categoryid;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategoryid(Integer categoryid) {
-		this.categoryid = categoryid;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
+
 	
 	
 }

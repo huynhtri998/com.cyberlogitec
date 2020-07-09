@@ -26,7 +26,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
 		registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/views/img/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/css/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");		
+		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/views/js/");
+		registry.addResourceHandler("/common/**").addResourceLocations("/WEB-INF/views/common/");
 	}
 	
 	@Bean

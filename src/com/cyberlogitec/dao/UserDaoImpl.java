@@ -19,8 +19,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlsession.update("UserMapper.updateUser", user);
 	}
 
 	@Override
