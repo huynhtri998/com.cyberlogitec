@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cyberlogitec.model.Category;
+import com.cyberlogitec.model.Product;
 import com.cyberlogitec.model.ProductCategory;
 import com.cyberlogitec.model.User;
 import com.cyberlogitec.service.CategoryService;
 import com.cyberlogitec.service.ProductCategoryService;
+import com.cyberlogitec.service.ProductService;
 import com.cyberlogitec.service.UserService;
 
 @Controller
@@ -24,6 +26,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductCategoryService productCategoryService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	 private CategoryService categoryService;

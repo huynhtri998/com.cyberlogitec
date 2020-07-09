@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/header :: head">
-
+<style type="text/css">
+img.img-responsive{
+	display: block;
+    max-width: 32%;
+    height: auto;
+}
+div.img-box {
+	height: 100px;
+	width: 25% !important;
+	position: relative;
+}
+div.thumb-content {
+	padding: 15px;
+}
+div.item img {
+	max-width: 25%;
+	max-height: 25%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+.item-price {
+	font-size: 13px;
+	padding: 2px 0;
+}
+.item-price strike {
+	color: #999;
+	margin-right: 5px;
+}
+.item-price span {
+	color: #86bd57;
+	font-size: 110%;
+}
+</style>
 </head>
 
 <body class="no-skin">
@@ -64,11 +100,11 @@
 										</div>
 
 										<!-- Left and right controls -->
-										<a class="left carousel-control" href="#myCarousel"
+										<a class="left carousel-control" style="width: 6% !important;" href="#myCarousel"
 											data-slide="prev"> <span
 											class="glyphicon glyphicon-chevron-left"></span> <span
 											class="sr-only">Previous</span>
-										</a> <a class="right carousel-control" href="#myCarousel"
+										</a> <a class="right carousel-control" style="width: 6% !important;" href="#myCarousel"
 											data-slide="next"> <span
 											class="glyphicon glyphicon-chevron-right"></span> <span
 											class="sr-only">Next</span>
@@ -83,57 +119,136 @@
 							</div>
 
 							<div class="row">
-								<div class="col-md-12">
+								<div class="col-md-12" >
 									<div class="carousel slide multi-item-carousel"
 										id="theCarousel1">
-										<div class="carousel-inner">
+										<div class="carousel-inner" >
 											<div class="item active">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box" >
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;"
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 											<!-- add  more items here -->
 											<!-- Example item start:  -->
 
 											<div class="item">
-												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+												<div class="col-xs-3">
+													<a href="#1">
+														<div class="img-box">
+															<img th:src="@{/img/ipad.jpg}" style="max-width: 30% !important;display: block;height: auto;" 
+																alt="">
+														</div>
+														<div class="thumb-content">
+															<h4>Sony Headphone</h4>
+															<p class="item-price">
+																<strike>$25.00</strike> <span>$23.99</span>
+															</p>
+														</div>
+													</a>
 												</div>
 											</div>
 
 											<!--  Example item end -->
 										</div>
-										<a class="left carousel-control" href="#theCarousel1"
+										<a class="left carousel-control" style="width: 6% !important;" href="#theCarousel1"
 											data-slide="prev"><i
-											class="glyphicon glyphicon-chevron-left"></i></a> <a
-											class="right carousel-control" href="#theCarousel1"
+											class="glyphicon glyphicon-chevron-left"></i>
+										</a> 
+										<a class="right carousel-control" style="width: 6% !important;" href="#theCarousel1"
 											data-slide="next"><i
-											class="glyphicon glyphicon-chevron-right"></i></a>
+											class="glyphicon glyphicon-chevron-right"></i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -149,32 +264,38 @@
 										<div class="carousel-inner">
 											<div class="item active">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 											<!-- add  more items here -->
@@ -182,7 +303,8 @@
 
 											<div class="item">
 												<div class="col-xs-4">
-													<a href="#1"><div style="background-color: red; height: 200px;"></div></a>
+													<a href="#1"><div
+															style="background-color: red; height: 200px;"></div></a>
 												</div>
 											</div>
 
@@ -270,27 +392,32 @@
 							[ 'sidebar_fixed',
 									$('#sidebar').hasClass('sidebar-fixed') ]);
 			$('.multi-item-carousel').carousel({
-				  interval: false
-				});
+				interval : false
+			});
 
-				// for every slide in carousel, copy the next slide's item in the slide.
-				// Do the same for the next, next item.
-				$('.multi-item-carousel .item').each(function(){
-				  var next = $(this).next();
-				  if (!next.length) {
-				    next = $(this).siblings(':first');
-				  }
-				  next.children(':first-child').clone().appendTo($(this));
-				  
-				  if (next.next().length>0) {
-				    next.next().children(':first-child').clone().appendTo($(this));
-				  } else {
-				  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-				  }
-				});
-				
+			// for every slide in carousel, copy the next slide's item in the slide.
+			// Do the same for the next, next item.
+			$('.multi-item-carousel .item')
+					.each(
+							function() {
+								var next = $(this).next();
+								if (!next.length) {
+									next = $(this).siblings(':first');
+								}
+								next.children(':first-child').clone().appendTo(
+										$(this));
+
+								if (next.next().length > 0) {
+									next.next().children(':first-child')
+											.clone().appendTo($(this));
+								} else {
+									$(this).siblings(':first').children(
+											':first-child').clone().appendTo(
+											$(this));
+								}
+							});
+
 		})
-		
 	</script>
 </body>
 </html>

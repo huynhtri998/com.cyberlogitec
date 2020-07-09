@@ -1,16 +1,18 @@
 package com.cyberlogitec.model;
 
+import java.util.List;
+
 public class ProductCategory {
 	private Integer categoryId;
 	private String categoryName;
 	private String categoryCode;
-	private Product product;
+	private List<Product> product;
 	
 	public ProductCategory() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductCategory(Integer categoryId, String categoryName, String categoryCode, Product product) {
+	public ProductCategory(Integer categoryId, String categoryName, String categoryCode, List<Product> product) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
@@ -42,11 +44,11 @@ public class ProductCategory {
 		this.categoryCode = categoryCode;
 	}
 
-	public Product getProduct() {
+	public List<Product> getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
 	

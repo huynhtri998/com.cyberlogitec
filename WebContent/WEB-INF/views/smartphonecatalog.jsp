@@ -80,34 +80,24 @@
 								<!-- .sidebar -->
 							</div>
 
-							<div class="row " style="margin-top: 40px;">
+							<div th:each="listProductByCategoryId : ${listProductByCategoryId.product}" class="row " style="margin-top: 40px;">
 								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
+									<a href="#1">
+										<div class="img-box">
+											<img th:src="@{/img/ipad.jpg}"
+												style="max-width: 30% !important; display: block; height: auto;"
+												alt="">
+										</div>
+										<div class="thumb-content">
+											<h4 th:utext="${listProductByCategoryId.productName}">Sony Headphone</h4>
+											<p class="item-price">
+												<strike th:utext="${listProductByCategoryId.productPrice}">$25.00</strike> <span th:utext="${listProductByCategoryId.productSalePrice}">$23.99</span>
+											</p>
+										</div>
+									</a>
 								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
+								
 
-							</div>
-							<div class="row " style="margin-top: 40px;">
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
-								<div class="col-md-3">
-									<div style="background-color: red; height: 200px;"></div>
-								</div>
 							</div>
 
 							<div class="row" style="margin-top: 50px; text-align: center;">
