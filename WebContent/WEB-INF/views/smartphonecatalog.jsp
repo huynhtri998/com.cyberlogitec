@@ -126,7 +126,7 @@
 			</div>
 		</div>
 		<!-- /.main-content -->
-
+		<div th:include="common/cart :: confirm"></div>
 		<div th:replace="~{common/footer :: .footer}"></div>
 
 		<a href="#" id="btn-scroll-up"
