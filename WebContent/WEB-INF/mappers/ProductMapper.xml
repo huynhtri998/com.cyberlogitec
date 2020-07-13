@@ -2,7 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ProductMapper">
-	<select id="getTopTenProduct">
-		select * from product order by salenumber desc limit 10;
+	<select id="getTopTenProduct" resultType="Product">
+		select * from product order by salenumber desc limit 10
 	</select>
+	<select id="getTopTenSaleProduct" resultType="Product">
+		select * from product order by productsaleprice desc limit 10
+	</select>
+	<select id="getProductById" resultType="Product">
+		select * from product where productid = #{productId}
+	</select>
+
 </mapper>

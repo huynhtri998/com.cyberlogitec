@@ -50,7 +50,7 @@
 										<!-- Wrapper for slides -->
 										<div class="carousel-inner">
 											<div class="item active">
-												<img src="banner_smartphone.jpg"
+												<img src=""
 													style="width: 900px; height: 100px;" alt="Los Angeles">
 											</div>
 
@@ -80,40 +80,39 @@
 								<!-- .sidebar -->
 							</div>
 
-							<div th:each="listProductByCategoryId : ${listProductByCategoryId.product}" class="row " style="margin-top: 40px;">
+							<div  class="row " style="margin-top: 40px;">
+							<th:block th:each="ProductByCategoryId: ${listProductByCategoryId}">
+								<th:block th:each="Product: ${ProductByCategoryId.product}">
+								<a th:href="@{/smartphonedetail/{id}(id=${Product.productId})}">
 								<div class="col-md-3">
-									<a href="#1">
+									
 										<div class="img-box">
 											<img th:src="@{/img/ipad.jpg}"
 												style="max-width: 30% !important; display: block; height: auto;"
 												alt="">
 										</div>
 										<div class="thumb-content">
-											<h4 th:utext="${listProductByCategoryId.productName}">Sony Headphone</h4>
+											<h4 th:utext="${Product.productName}" ></h4>
 											<p class="item-price">
-												<strike th:utext="${listProductByCategoryId.productPrice}">$25.00</strike> <span th:utext="${listProductByCategoryId.productSalePrice}">$23.99</span>
+												<strike th:utext="${Product.productPrice}" ></strike> 
+												<span th:utext="${Product.productSalePrice}" ></span>
 											</p>
 										</div>
-									</a>
-								</div>
-								
-
+									
+								</div></a></th:block>
+								</th:block>
 							</div>
 
 							<div class="row" style="margin-top: 50px; text-align: center;">
 								<nav aria-label="Page navigation example">
 									<ul class="pagination pagination-lg">
-										<li class="page-item"><a class="page-link" href="#"
+										<li class="page-item"><a class="page-link" th:href="@{'/smartphonecatalog/' + ${categoryId} + '/' + ${thisPage - 1}}"
 											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 												<span class="sr-only">Previous</span>
 										</a></li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-												<span class="sr-only">Next</span>
-										</a></li>
+										<th:block th:each="page: ${pages}">
+										<li class="page-item"><a th:href="@{'/smartphonecatalog/' + ${categoryId} + '/' + ${page}}"  th:utext="${page}"  class="page-link" href="#"></a></li>
+										</th:block>
 									</ul>
 								</nav>
 							</div>

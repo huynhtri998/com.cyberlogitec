@@ -40,6 +40,17 @@
             product p
         on
             c.categoryid = p.categoryid
-        where c.categoryid = #{categoryId}
+        where c.categoryid = #{id} limit 8 offset #{page}
+	</select>
+	<select id="countProductBycategoryId" parameterType="int" resultType="int">
+		select 
+            count(productid) as count
+        from 
+            category c
+        inner join  
+            product p
+        on
+            c.categoryid = p.categoryid
+        where c.categoryid = #{id}
 	</select>
 </mapper>

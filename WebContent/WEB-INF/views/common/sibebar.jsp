@@ -16,7 +16,7 @@
 
 			<ul class="submenu">
 				<th:block th:each="categories : ${categories}">
-				<li class="" ><a th:href="@{'/smartphonecatalog/' + ${categories.categoryId}}"> <i
+				<li class="" ><a th:href="@{'/smartphonecatalog/' + ${categories.categoryId} + '/1'}"> <i
 						class="menu-icon fa fa-caret-right"></i><span th:utext="${categories.categoryName}"></span>
 				</a> <b class="arrow"></b></li>
 				</th:block>

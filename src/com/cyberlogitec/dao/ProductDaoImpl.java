@@ -19,6 +19,16 @@ public class ProductDaoImpl implements ProductDao{
 		return sqlsession.selectList("ProductMapper.getTopTenProduct");
 	}
 
+	@Override
+	public List<Product> getTopTenSaleProduct() {
+		return sqlsession.selectList("ProductMapper.getTopTenSaleProduct");
+	}
+
+	@Override
+	public Product getProductById(Integer productId) {
+		return sqlsession.selectOne("ProductMapper.getProductById", productId);
+	}
+
 	
 
 }

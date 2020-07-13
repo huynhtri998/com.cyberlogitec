@@ -9,7 +9,7 @@
 			</button>
 
 			<div class="navbar-header pull-left">
-				<a href="index.html" class="navbar-brand"> <small> <i
+				<a th:href="@{/smartphone}" class="navbar-brand"> <small> <i
 						class="fa fa-mobile"></i> SmartPhone
 				</small>
 				</a>
