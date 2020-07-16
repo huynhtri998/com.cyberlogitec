@@ -325,6 +325,7 @@ h2::after {
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenProduct.productPrice}"></strike>
+																		<input hidden="" th:value="${topTenProduct.productId}" type="text" class="id_product">
 																		<span class="price_product" th:utext="${topTenProduct.productSalePrice}"></span>
 																	</p>
 																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
@@ -357,8 +358,10 @@ h2::after {
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenProduct.productPrice}"></strike>
+																		<input hidden="" th:value="${topTenProduct.productId}" type="text" class="id_product">
 																		<span class="price_product" th:utext="${topTenProduct.productSalePrice}"></span>
 																	</p>
+																	
 																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																</div>
 															</div>
@@ -419,7 +422,9 @@ h2::after {
 																	<p class="item-price">
 																		<strike th:utext="${topTenSaleProduct.productPrice}"></strike>
 																		<span class="price_product" th:utext="${topTenSaleProduct.productSalePrice}"></span>
+																		<input hidden="" th:value="${topTenSaleProduct.productId}" type="text" class="id_product">
 																	</p>
+																	
 																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																	
 																</div>
@@ -452,8 +457,10 @@ h2::after {
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenSaleProduct.productPrice}"></strike>
+																		<input hidden="" th:value="${topTenSaleProduct.productId}" type="text" class="id_product">
 																		<span class="price_product" th:utext="${topTenSaleProduct.productSalePrice}"></span>
 																	</p>
+																	
 																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																</div>
 															</div>
@@ -524,9 +531,32 @@ h2::after {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-	 	var objStr = '{[]}';
+	var btn_showcart = document.getElementById('btn_showcart');
+	console.log(btn_showcart);
+	btn_showcart.addEventListener(
+			"click",
+			showCart())
+	function setCookie(name, value, days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + (value || "") + expires + "; path=/";
+	}
+
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	}
 		var add_cart = document.getElementsByClassName("btn_addToCart");
-		console.log(add_cart);
 		for (var i = 0; i < add_cart.length; i++) {
 			var add = add_cart[i];
 			add.addEventListener(
@@ -541,66 +571,59 @@ h2::after {
 										.getElementsByClassName("name_product")[0].innerText
 								var price = product
 										.getElementsByClassName("price_product")[0].innerText
-										console.log(img + '  ' + title + '  ' + price);
-								addItemToCart(title, price, img)
+								var id = product
+										.getElementsByClassName("id_product")[0].value
+								addItemToCart(title, price, img, id)
 								// Khi thêm sản phẩm vào giỏ hàng thì sẽ hiển thị modal
 								//modal.style.display = "block";
 
 								//updatecart()
 							})
 		}
-
-		function addItemToCart(title, price, img) {
-		  var objInner = '{"title":"' + title + '", "img":"'+ img + '", "price":"' +price +'"}';
-		  obj = JSON.parse(objStr);
-		  obj.push(objInner);
-		  document.cookie = '"' + title + '" ' + obj;
-		  var x = document.cookie;
-		  console.log('cookie : ' + x);
-		  var cartRow = document.createElement('div')
-		  cartRow.classList.add('cart_row')
-		  var cartItems = document.getElementsByClassName('cart_items')[0]
+		
+		function showCart(){
+			 var cartRow = document.createElement('div')
+			 console.log(cartRow)
+			  cartRow.classList.add('cart_row')
+			  var cartItems = document.getElementsByClassName('cart_items')[0]
+			 console.log(cartItems)
 		  var cart_title = cartItems.getElementsByClassName('cart_name_product')
-		  //Nếu title của sản phẩm bằng với title mà bạn thêm vao giỏ hàng thì sẽ thông cho user.
-		  for (var i = 0; i < cart_title.length; i++) {
-		    if (cart_title[i].innerText == title) {
-		      alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
-		      return
-		    }
-		  }
-		  
-		  
-
-		  var cartRowContents = '<div class="row"><div class="col-xs-2">' + 
-				'<img class="img-responsive" src="' + img + '">' + 
-			'</div>'+
-			'<div class="col-xs-4">' + 
-				'<h4 class="product-name">' + 
-					'<strong class="cart_name_product">' + title + '</strong>' + 
-				'</h4>' + 
-			'</div>' + 
-			'<div class="col-xs-6">' + 
-				'<div class="col-xs-6 text-right">' + 
-					'<h6>' + 
-						'<strong>$ </strong><strong class="cart_price">' + price + '</strong>' + 
-						'<span class="text-muted">x</span>' + 
-					'</h6>' + 
-				'</div>' + 
+		  console.log(cart_title)
+		  var getVal = JSON.parse(getCookie('shoppingCart'))
+		  if (getVal != null) {
+			  for (var i = 0; i < getVal.length; i++) {
+				  var cartRowContents = '<div class="row"><div class="col-xs-2">' + 
+					'<img class="img-responsive" src="' + getVal[i].img + '">' + 
+				'</div>'+
 				'<div class="col-xs-4">' + 
-					'<input type="number" class="cart_input form-control input-sm" value="1">' + 
+					'<h4 class="product-name">' + 
+						'<strong class="cart_name_product">' + getVal[i].title + '</strong>' + 
+					'</h4>' + 
 				'</div>' + 
-				'<div class="col-xs-2">' + 
-					'<button type="button" class="btn btnDelete btn-link btn-xs">' + 
-						'<span class="glyphicon glyphicon-trash"> </span>' +
-					'</button>' + 
+				'<div class="col-xs-6">' + 
+					'<div class="col-xs-6 text-right">' + 
+						'<h6>' + 
+							'<strong>$ </strong><strong class="cart_price">' + getVal[i].price + '</strong>' + 
+							'<span class="text-muted">x</span>' + 
+						'</h6>' + 
+					'</div>' + 
+					'<div class="col-xs-4">' + 
+						'<input type="number" class="cart_input form-control input-sm" value="1">' + 
+					'</div>' + 
+					'<div class="col-xs-2">' + 
+						'<button type="button" class="btn btnDelete btn-link btn-xs">' + 
+							'<span class="glyphicon glyphicon-trash"> </span>' +
+						'</button>' + 
+					'</div>' + 
 				'</div>' + 
-			'</div>' + 
-		'</div>' +
-		'<hr>'
-	  		
-		  cartRow.innerHTML = cartRowContents
-		 
-		  cartItems.append(cartRow)
+			'</div>' +
+			'<hr>'
+		  		
+			  cartRow.innerHTML = cartRowContents
+			 
+			  cartItems.append(cartRow)
+				}
+				
 		  cartRow.getElementsByClassName('btnDelete')[0].addEventListener('click', function () {
 		    var button_remove = event.target
 		    button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
@@ -615,6 +638,36 @@ h2::after {
 		    updatecart()
 		  })
 		  updatecart()
+		}
+		 
+		}
+
+		function addItemToCart(title, price, img, id) {
+			var check = true;
+			var cartItems = document.getElementsByClassName('cart_items')[0]
+			  var cart_title = cartItems.getElementsByClassName('cart_name_product')
+			for (var i = 0; i < cart_title.length; i++) {
+			    if (cart_title[i].innerText == title) {
+			    	check = false;
+			      alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
+			      return
+			    }
+			  }
+			if(check == true){
+				if(getCookie('shoppingCart')){
+					  var objInner = {id:id, title:title, price:price, img:img};
+					  var getVal = JSON.parse(getCookie('shoppingCart'));
+					  getVal.push(objInner);
+					  setCookie('shoppingCart',JSON.stringify(getVal), 7);
+					  
+				  }
+				  else{
+					  var objInner = JSON.stringify([{id:id, title:title, price:price, img:img}]);
+					  console.log(objInner);
+					  setCookie('shoppingCart',objInner, 7);
+				  }
+			}
+		  
 		}
 		var remove_cart = document.getElementsByClassName("btnDelete");
 		for (var i = 0; i < remove_cart.length; i++) {
@@ -636,8 +689,6 @@ h2::after {
 			var cart_item = document.getElementsByClassName("cart_items")[0];
 			var cart_rows = cart_item.getElementsByClassName("cart_row");
 			var total = 0;
-			console.log(cart_item);
-			console.log(cart_rows);
 			for (var i = 0; i < cart_rows.length; i++) {
 				var cart_row = cart_rows[i]
 				console.log(cart_row);
