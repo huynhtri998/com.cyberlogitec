@@ -78,7 +78,7 @@
 							function() {
 								var button_remove = event.target
 								console.log(button_remove);
-								button_remove.parentElement.parentElement.parentElement.parentElement
+								button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
 										.remove()
 								updatecart();
 							})
@@ -86,14 +86,18 @@
 		//Update cart
 		function updatecart() {
 			var cart_item = document.getElementsByClassName("cart_items")[0];
-			var cart_rows = cart_item.getElementsByClassName("row cart_row");
+			var cart_rows = cart_item.getElementsByClassName("cart_row");
 			var total = 0;
-
+			console.log(cart_item);
+			console.log(cart_rows);
 			for (var i = 0; i < cart_rows.length; i++) {
 				var cart_row = cart_rows[i]
+				console.log(cart_row);
 				var price_item = cart_row.getElementsByClassName("cart_price")[0]
+				console.log(price_item);
 				var quantity_item = cart_row
 						.getElementsByClassName("cart_input")[0]
+				console.log(quantity_item);
 				var price = parseFloat(price_item.innerText)// chuyển một chuổi string sang number để tính tổng tiền.
 				var quantity = quantity_item.value // lấy giá trị trong thẻ input
 				total = total + (price * quantity)
@@ -101,6 +105,22 @@
 			document.getElementsByClassName("cart_total")[0].innerText = total
 					+ '$'
 			// Thay đổi text = total trong .cart-total-price. Chỉ có một .cart-total-price nên mình sử dụng [0].
+		}
+		var quantity_input = document
+				.getElementsByClassName("cart_input");
+		console.log(quantity_input.length);
+		console.log(quantity_input);
+		for (var i = 0; i < quantity_input.length; i++) {
+			var input = quantity_input[i];
+			console.log(input);
+			input.addEventListener("change", function(event) {
+				var input = event.target
+				console.log(input);
+				if (isNaN(input.value) || input.value <= 0) {
+				      input.value = 1;
+				    }
+				updatecart()
+			})
 		}
 		jQuery(function($) {
 			$('#sidebar2').insertBefore('.page-content');

@@ -313,20 +313,21 @@ h2::after {
 														<div class="col-md-3">
 															<div class="thumb-wrapper">
 																<div class="img-box">
-																	<img style="width: 25%;"
+																	<img  style="width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
-																		class="img-responsive img-fluid" alt="" />
+																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
 																<div class="thumb-content">
 																	<a style="border-style: none;"
 																		th:href="@{/smartphonedetail/{id}(id=${topTenProduct.productId})}">
-																		<p style="font-size: 16px;"
+																		<p class="name_product" style="font-size: 16px;"
 																			th:utext="${topTenProduct.productName}"></p>
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenProduct.productPrice}"></strike>
-																		<span th:utext="${topTenProduct.productSalePrice}"></span>
+																		<span class="price_product" th:utext="${topTenProduct.productSalePrice}"></span>
 																	</p>
+																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																</div>
 															</div>
 														</div>
@@ -346,18 +347,19 @@ h2::after {
 																<div class="img-box">
 																	<img style="width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
-																		class="img-responsive img-fluid" alt="" />
+																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
 																<div class="thumb-content">
 																	<a style="border-style: none;"
 																		th:href="@{/smartphonedetail/{id}(id=${topTenProduct.productId})}">
-																		<p style="font-size: 16px;"
+																		<p class="name_product" style="font-size: 16px;"
 																			th:utext="${topTenProduct.productName}"></p>
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenProduct.productPrice}"></strike>
-																		<span th:utext="${topTenProduct.productSalePrice}"></span>
+																		<span class="price_product" th:utext="${topTenProduct.productSalePrice}"></span>
 																	</p>
+																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																</div>
 															</div>
 														</div>
@@ -406,18 +408,20 @@ h2::after {
 																<div class="img-box">
 																	<img style="width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
-																		class="img-responsive img-fluid" alt="" />
+																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
 																<div class="thumb-content">
 																	<a style="border-style: none;"
 																		th:href="@{/smartphonedetail/{id}(id=${topTenSaleProduct.productId})}">
-																		<p style="font-size: 16px;"
+																		<p class="name_product" style="font-size: 16px;"
 																			th:utext="${topTenSaleProduct.productName}"></p>
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenSaleProduct.productPrice}"></strike>
-																		<span th:utext="${topTenSaleProduct.productSalePrice}"></span>
+																		<span class="price_product" th:utext="${topTenSaleProduct.productSalePrice}"></span>
 																	</p>
+																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
+																	
 																</div>
 															</div>
 														</div>
@@ -438,18 +442,19 @@ h2::after {
 																<div class="img-box">
 																	<img style="width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
-																		class="img-responsive img-fluid" alt="" />
+																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
 																<div class="thumb-content">
 																	<a style="border-style: none;"
 																		th:href="@{/smartphonedetail/{id}(id=${topTenSaleProduct.productId})}">
-																		<p style="font-size: 16px;"
+																		<p class="name_product" style="font-size: 16px;"
 																			th:utext="${topTenSaleProduct.productName}"></p>
 																	</a>
 																	<p class="item-price">
 																		<strike th:utext="${topTenSaleProduct.productPrice}"></strike>
-																		<span th:utext="${topTenSaleProduct.productSalePrice}"></span>
+																		<span class="price_product" th:utext="${topTenSaleProduct.productSalePrice}"></span>
 																	</p>
+																	<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 																</div>
 															</div>
 														</div>
@@ -519,6 +524,98 @@ h2::after {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+	 	var objStr = '{[]}';
+		var add_cart = document.getElementsByClassName("btn_addToCart");
+		console.log(add_cart);
+		for (var i = 0; i < add_cart.length; i++) {
+			var add = add_cart[i];
+			add.addEventListener(
+							"click",
+							function(event) {
+
+								var button = event.target;
+								var product = button.parentElement.parentElement;
+								var img = product.parentElement
+										.getElementsByClassName("img_product")[0].src
+								var title = product
+										.getElementsByClassName("name_product")[0].innerText
+								var price = product
+										.getElementsByClassName("price_product")[0].innerText
+										console.log(img + '  ' + title + '  ' + price);
+								addItemToCart(title, price, img)
+								// Khi thêm sản phẩm vào giỏ hàng thì sẽ hiển thị modal
+								//modal.style.display = "block";
+
+								//updatecart()
+							})
+		}
+
+		function addItemToCart(title, price, img) {
+		  var objInner = '{"title":"' + title + '", "img":"'+ img + '", "price":"' +price +'"}';
+		  obj = JSON.parse(objStr);
+		  obj.push(objInner);
+		  document.cookie = '"' + title + '" ' + obj;
+		  var x = document.cookie;
+		  console.log('cookie : ' + x);
+		  var cartRow = document.createElement('div')
+		  cartRow.classList.add('cart_row')
+		  var cartItems = document.getElementsByClassName('cart_items')[0]
+		  var cart_title = cartItems.getElementsByClassName('cart_name_product')
+		  //Nếu title của sản phẩm bằng với title mà bạn thêm vao giỏ hàng thì sẽ thông cho user.
+		  for (var i = 0; i < cart_title.length; i++) {
+		    if (cart_title[i].innerText == title) {
+		      alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
+		      return
+		    }
+		  }
+		  
+		  
+
+		  var cartRowContents = '<div class="row"><div class="col-xs-2">' + 
+				'<img class="img-responsive" src="' + img + '">' + 
+			'</div>'+
+			'<div class="col-xs-4">' + 
+				'<h4 class="product-name">' + 
+					'<strong class="cart_name_product">' + title + '</strong>' + 
+				'</h4>' + 
+			'</div>' + 
+			'<div class="col-xs-6">' + 
+				'<div class="col-xs-6 text-right">' + 
+					'<h6>' + 
+						'<strong>$ </strong><strong class="cart_price">' + price + '</strong>' + 
+						'<span class="text-muted">x</span>' + 
+					'</h6>' + 
+				'</div>' + 
+				'<div class="col-xs-4">' + 
+					'<input type="number" class="cart_input form-control input-sm" value="1">' + 
+				'</div>' + 
+				'<div class="col-xs-2">' + 
+					'<button type="button" class="btn btnDelete btn-link btn-xs">' + 
+						'<span class="glyphicon glyphicon-trash"> </span>' +
+					'</button>' + 
+				'</div>' + 
+			'</div>' + 
+		'</div>' +
+		'<hr>'
+	  		
+		  cartRow.innerHTML = cartRowContents
+		 
+		  cartItems.append(cartRow)
+		  cartRow.getElementsByClassName('btnDelete')[0].addEventListener('click', function () {
+		    var button_remove = event.target
+		    button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
+			.remove()
+		    updatecart()
+		  })
+		   cartRow.getElementsByClassName('cart_input')[0].addEventListener('change', function (event) {
+		    var input = event.target
+		    if (isNaN(input.value) || input.value <= 0) {
+		      input.value = 1;
+		    }
+		    updatecart()
+		  })
+		  updatecart()
+		}
 		var remove_cart = document.getElementsByClassName("btnDelete");
 		for (var i = 0; i < remove_cart.length; i++) {
 			var button = remove_cart[i]
@@ -529,7 +626,7 @@ h2::after {
 							function() {
 								var button_remove = event.target
 								console.log(button_remove);
-								button_remove.parentElement.parentElement.parentElement.parentElement
+								button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
 										.remove()
 								updatecart();
 							})
@@ -537,21 +634,41 @@ h2::after {
 		//Update cart
 		function updatecart() {
 			var cart_item = document.getElementsByClassName("cart_items")[0];
-			var cart_rows = cart_item.getElementsByClassName("row cart_row");
+			var cart_rows = cart_item.getElementsByClassName("cart_row");
 			var total = 0;
-
+			console.log(cart_item);
+			console.log(cart_rows);
 			for (var i = 0; i < cart_rows.length; i++) {
 				var cart_row = cart_rows[i]
+				console.log(cart_row);
 				var price_item = cart_row.getElementsByClassName("cart_price")[0]
+				console.log(price_item);
 				var quantity_item = cart_row
 						.getElementsByClassName("cart_input")[0]
-				var price = parseFloat(price_item.innerText)// chuyển một chuổi string sang number để tính tổng tiền.
-				var quantity = quantity_item.value // lấy giá trị trong thẻ input
+				console.log(quantity_item);
+				var price = parseFloat(price_item.innerText)
+				var quantity = quantity_item.value 
 				total = total + (price * quantity)
 			}
 			document.getElementsByClassName("cart_total")[0].innerText = total
 					+ '$'
-			// Thay đổi text = total trong .cart-total-price. Chỉ có một .cart-total-price nên mình sử dụng [0].
+			
+		}
+		var quantity_input = document
+				.getElementsByClassName("cart_input");
+		console.log(quantity_input.length);
+		console.log(quantity_input);
+		for (var i = 0; i < quantity_input.length; i++) {
+			var input = quantity_input[i];
+			console.log(input);
+			input.addEventListener("change", function(event) {
+				var input = event.target
+				console.log(input);
+				if (isNaN(input.value) || input.value <= 0) {
+				      input.value = 1;
+				    }
+				updatecart()
+			})
 		}
 		jQuery(function($) {
 			$('#sidebar2').insertBefore('.page-content');
