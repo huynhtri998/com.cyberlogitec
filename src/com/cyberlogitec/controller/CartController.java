@@ -32,18 +32,8 @@ public class CartController {
 	@Autowired
 	 private CategoryService categoryService;
 	
-	@GetMapping(value= {"/cart"})
-	public String smartPhone(Model model, Authentication auth) {
-		UserDetails userDetails = (UserDetails) auth.getPrincipal();
-		String username = userDetails.getUsername();
-		List<Category> categories = categoryService.getAll();
-		List<Product> products = productService.getTopTenProduct();
-		List<Product> saleProduct = productService.getTopTenSaleProduct();
-		User user = userService.getUserByUserName(username);
-		model.addAttribute("userProfile",user);
-		model.addAttribute("categories",categories);
-		model.addAttribute("topTenProduct", products);
-		model.addAttribute("topTenSaleProduct", saleProduct);
+	@GetMapping(value= {"/saveCart"})
+	public String smartPhone(Model model) {
 		return "cart";
 	}
 }

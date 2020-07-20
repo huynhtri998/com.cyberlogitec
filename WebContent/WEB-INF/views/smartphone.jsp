@@ -531,11 +531,6 @@ h2::after {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-	var btn_showcart = document.getElementById('btn_showcart');
-	console.log(btn_showcart);
-	btn_showcart.addEventListener(
-			"click",
-			showCart())
 	function setCookie(name, value, days) {
 		var expires = "";
 		if (days) {
@@ -582,16 +577,23 @@ h2::after {
 		}
 		
 		function showCart(){
-			 var cartRow = document.createElement('div')
-			 console.log(cartRow)
-			  cartRow.classList.add('cart_row')
-			  var cartItems = document.getElementsByClassName('cart_items')[0]
-			 console.log(cartItems)
+		  var cartItems = document.getElementsByClassName('cart_items')[0]
 		  var cart_title = cartItems.getElementsByClassName('cart_name_product')
-		  console.log(cart_title)
+		  var cart_id = cartItems.getElementsByClassName('id_product')	 
 		  var getVal = JSON.parse(getCookie('shoppingCart'))
 		  if (getVal != null) {
 			  for (var i = 0; i < getVal.length; i++) {
+				  var check = true
+				  for (var j = 0; j < cart_id.length; j++) {
+					  console.log(getVal[i].id + ' ' + cart_id[j].value)
+					if (getVal[i].id == cart_id[j].value) {
+						check = false
+					}
+				  }
+				  console.log(check)
+					if (check == true) {					
+			  var cartRow = document.createElement('div')
+			  cartRow.classList.add('cart_row')
 				  var cartRowContents = '<div class="row"><div class="col-xs-2">' + 
 					'<img class="img-responsive" src="' + getVal[i].img + '">' + 
 				'</div>'+
@@ -611,9 +613,11 @@ h2::after {
 						'<input type="number" class="cart_input form-control input-sm" value="1">' + 
 					'</div>' + 
 					'<div class="col-xs-2">' + 
-						'<button type="button" class="btn btnDelete btn-link btn-xs">' + 
+						'<button type="button" id="'+getVal[i].id+'" class="btn btnDelete btn-link btn-xs">' + 
 							'<span class="glyphicon glyphicon-trash"> </span>' +
-						'</button>' + 
+						'</button>'+
+						'<input type="text" hidden="" class="id_product" value="'+getVal[i].id+'" name="lname">'
+						+ 
 					'</div>' + 
 				'</div>' + 
 			'</div>' +
@@ -622,21 +626,43 @@ h2::after {
 			  cartRow.innerHTML = cartRowContents
 			 
 			  cartItems.append(cartRow)
+					}
+				  }
+			  var remove_cart = document.getElementsByClassName("btnDelete");
+				for (var i = 0; i < remove_cart.length; i++) {
+					var button = remove_cart[i]
+					button.addEventListener(
+									"click",
+									function() {
+										var button_remove = event.target
+										var id_product = button_remove.parentElement.id
+										var a
+										console.log(id_product)
+										for (var j = 0; j < getVal.length; j++) {
+											if (id_product == getVal[j].id) {
+												getVal.splice(j,1)
+												a = getVal
+												 setCookie('shoppingCart',JSON.stringify(a), 7);
+											}
+										}
+										button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
+												.remove()
+										
+										updatecart();
+									})
 				}
-				
-		  cartRow.getElementsByClassName('btnDelete')[0].addEventListener('click', function () {
-		    var button_remove = event.target
-		    button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
-			.remove()
-		    updatecart()
-		  })
-		   cartRow.getElementsByClassName('cart_input')[0].addEventListener('change', function (event) {
-		    var input = event.target
-		    if (isNaN(input.value) || input.value <= 0) {
-		      input.value = 1;
-		    }
-		    updatecart()
-		  })
+				var quantity_input = document.getElementsByClassName("cart_input");
+				for (var i = 0; i < quantity_input.length; i++) {
+					var input = quantity_input[i];
+					console.log(input)
+					input.addEventListener("change", function(event) {
+					var input = event.target
+					if (isNaN(input.value) || input.value <= 0) {
+				      input.value = 1;
+				    }
+					updatecart()
+				})
+			}
 		  updatecart()
 		}
 		 
@@ -663,27 +689,12 @@ h2::after {
 				  }
 				  else{
 					  var objInner = JSON.stringify([{id:id, title:title, price:price, img:img}]);
-					  console.log(objInner);
 					  setCookie('shoppingCart',objInner, 7);
 				  }
 			}
 		  
 		}
-		var remove_cart = document.getElementsByClassName("btnDelete");
-		for (var i = 0; i < remove_cart.length; i++) {
-			var button = remove_cart[i]
-
-			button
-					.addEventListener(
-							"click",
-							function() {
-								var button_remove = event.target
-								console.log(button_remove);
-								button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
-										.remove()
-								updatecart();
-							})
-		}
+		
 		//Update cart
 		function updatecart() {
 			var cart_item = document.getElementsByClassName("cart_items")[0];
@@ -691,12 +702,9 @@ h2::after {
 			var total = 0;
 			for (var i = 0; i < cart_rows.length; i++) {
 				var cart_row = cart_rows[i]
-				console.log(cart_row);
 				var price_item = cart_row.getElementsByClassName("cart_price")[0]
-				console.log(price_item);
 				var quantity_item = cart_row
 						.getElementsByClassName("cart_input")[0]
-				console.log(quantity_item);
 				var price = parseFloat(price_item.innerText)
 				var quantity = quantity_item.value 
 				total = total + (price * quantity)
@@ -705,22 +713,7 @@ h2::after {
 					+ '$'
 			
 		}
-		var quantity_input = document
-				.getElementsByClassName("cart_input");
-		console.log(quantity_input.length);
-		console.log(quantity_input);
-		for (var i = 0; i < quantity_input.length; i++) {
-			var input = quantity_input[i];
-			console.log(input);
-			input.addEventListener("change", function(event) {
-				var input = event.target
-				console.log(input);
-				if (isNaN(input.value) || input.value <= 0) {
-				      input.value = 1;
-				    }
-				updatecart()
-			})
-		}
+		
 		jQuery(function($) {
 			$('#sidebar2').insertBefore('.page-content');
 

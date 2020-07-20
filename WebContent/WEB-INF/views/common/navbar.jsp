@@ -25,7 +25,7 @@
 				class="navbar-buttons navbar-header pull-right  collapse navbar-collapse"
 				role="navigation">
 				<ul class="nav ace-nav">
-					<a  data-toggle="modal" data-target="#exampleModal"  id="btn_showcart" class="btn btn-info btn-lg">
+					<a  data-toggle="modal" data-target="#exampleModal"  onclick="showCart()" class="btn btn-info btn-lg">
 							<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
 						  </a>
 					<li class="transparent dropdown-modal"><a
