@@ -211,19 +211,19 @@ div.section>div>input {
 }
 
 .multi-item-carousel .carousel-inner .active.left {
-	left: -33%;
+	left: -13%;
 }
 
 .multi-item-carousel .carousel-inner .active.right {
-	left: 33%;
+	left: 13%;
 }
 
 .multi-item-carousel .carousel-inner .next {
-	left: 33%;
+	left: 13%;
 }
 
 .multi-item-carousel .carousel-inner .prev {
-	left: -33%;
+	left: -13%;
 }
 
 @media all and (transform-3d) , ( -webkit-transform-3d ) {
@@ -238,8 +238,11 @@ div.section>div>input {
 		transform: none !important;
 	}
 }
-
+.carousel, .carousel-inner {
+     position: inherit;
+}
 .multi-item-carousel .carouse-control.left, .multi-item-carousel .carouse-control.right
 	{
+	width: 6%;
 	background-image: none;
 }

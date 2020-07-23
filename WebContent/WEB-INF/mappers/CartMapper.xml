@@ -3,8 +3,11 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CartMapper">
 	<insert id="addCart" parameterType="Cart">
-		INSERT INTO cart(idproduct,username,password,phone,email,imageURL,role)
-		VALUES (#{name},#{userName},#{password},#{phone},#{email},#{imageURL},#{role})
+		
+		INSERT INTO cart(idUser,total)
+		VALUES (#{idUser},#{total})
 	</insert>
-
+	<select id="getLastKey" resultType="Integer">
+		SELECT idCart from cart order by idCart desc limit 1
+	</select>
 </mapper>

@@ -5,21 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cyberlogitec.model.Cart;
+import com.cyberlogitec.model.CartItem;
 
 @Repository
-public class CartDaoImpl implements CartDao{
+public class CartItemDaoImpl implements CartItemDao {
 
 	@Autowired
 	private SqlSession sqlsession;
 	
 	@Override
-	public void addCart(Cart cart) {
-			sqlsession.insert("CartMapper.addCart", cart);
-	}
-
-	@Override
-	public Integer getLastKey() {
-		return sqlsession.selectOne("CartMapper.getLastKey");
+	public void addCartItem(CartItem cartItem) {
+		sqlsession.insert("CartItemMapper.addCartItem",cartItem);
+		
 	}
 
 }

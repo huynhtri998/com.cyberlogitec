@@ -1,8 +1,8 @@
-package com.cyberlogitec.dao;
+package com.cyberlogitec.service;
 
 import com.cyberlogitec.model.Cart;
 
-public interface CartDao {
+public interface CartService {
 	void addCart(Cart cart);
 	Integer getLastKey();
 }

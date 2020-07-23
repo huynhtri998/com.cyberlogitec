@@ -101,10 +101,10 @@
 													<!-- wrap 1 item active -->
 													<th:block th:each="topTenProduct, state : ${topTenProduct}"
 														th:if="${state.index} < 4">
-														<div class="col-md-3">
+														<div style="text-align: center;" class="col-md-3">
 															<div class="thumb-wrapper">
 																<div class="img-box">
-																	<img  style="width: 25%;"
+																	<img  style="margin:auto;width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
 																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
@@ -134,10 +134,10 @@
 													<!-- inactive item -->
 													<th:block th:each="topTenProduct, state : ${topTenProduct}"
 														th:if="${state.index} >= 4">
-														<div class="col-md-3">
+														<div style="text-align: center;"class="col-md-3">
 															<div class="thumb-wrapper">
 																<div class="img-box">
-																	<img style="width: 25%;"
+																	<img style="margin:auto;width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
 																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
@@ -164,10 +164,10 @@
 										</div>
 										<!-- Carousel controls -->
 										<a class="carousel-control left carousel-control-prev"
-											href="#myCarousel1" data-slide="prev"> <i
+											style="width: 3% !important;" href="#myCarousel1" data-slide="prev"> <i
 											id="carouselright1" class="fa fa-angle-left"></i>
 										</a> <a class="carousel-control right carousel-control-next"
-											href="#myCarousel1" data-slide="next"> <i
+											style="width: 3% !important;" href="#myCarousel1" data-slide="next"> <i
 											id="carouselleft1" class="fa fa-angle-right"></i>
 										</a>
 									</div>
@@ -197,10 +197,10 @@
 													<th:block
 														th:each="topTenSaleProduct, state : ${topTenSaleProduct}"
 														th:if="${state.index} < 4">
-														<div class="col-md-3">
+														<div style="text-align: center;" class="col-md-3">
 															<div class="thumb-wrapper">
 																<div class="img-box">
-																	<img style="width: 25%;"
+																	<img style="margin:auto;width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
 																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
@@ -233,10 +233,10 @@
 													<th:block
 														th:each="topTenSaleProduct, state : ${topTenSaleProduct}"
 														th:if="${state.index} >= 4">
-														<div class="col-md-3">
+														<div style="text-align: center;" class="col-md-3">
 															<div class="thumb-wrapper">
 																<div class="img-box">
-																	<img style="width: 25%;"
+																	<img style="margin:auto;width: 25%;"
 																		src="https://image.ibb.co/g0CAPp/ipad.jpg"
 																		class="img_product img-responsive img-fluid" alt="" />
 																</div>
@@ -263,10 +263,10 @@
 										</div>
 										<!-- Carousel controls -->
 										<a class="carousel-control left carousel-control-prev"
-											href="#myCarousel2" data-slide="prev"> <i
+											style="width: 3% !important;" href="#myCarousel2" data-slide="prev"> <i
 											id="carouselright1" class="fa fa-angle-left"></i>
 										</a> <a class="carousel-control right carousel-control-next"
-											href="#myCarousel2" data-slide="next"> <i
+											style="width: 3% !important;" href="#myCarousel2" data-slide="next"> <i
 											id="carouselleft1" class="fa fa-angle-right"></i>
 										</a>
 									</div>
@@ -375,35 +375,6 @@
 		})
 		
 		
-		function sendRequest(){
-			var getVal = $(".cart_row")
-		    var idUser = $("#idUser").val();
-		    var total = $(".cart_total")[0].innerText.split("$")[0];
-		    var shoppingCart = 
-		    	{
-		    		total: total,
-		    		idUser: idUser,
-		    		cartItems:[] 
-		    	};
-		    for (var i = 0; i < getVal.length; i++) {
-		    	var productPrice = getVal[i].getElementsByClassName("cart_price")[0].innerText;
-		    	var productId = getVal[i].getElementsByClassName("id_product")[0].value;
-		    	var productQuantity = getVal[i].getElementsByClassName("cart_input")[0].value;
-		    	shoppingCart['cartItems'].push({productId:productId,productPrice:productPrice,productQuantity:productQuantity})
-		    	
-			}
-			axios.post('/com.cyberlogitec/saveCart', 
-						{
-							product: JSON.stringify(shoppingCart)
-						}
-					
-					)
-				.then((response) => {
-				  console.log(response);
-				}, (error) => {
-				  console.log(error);
-				});
-		}
 	</script>
 </body>
 </html>

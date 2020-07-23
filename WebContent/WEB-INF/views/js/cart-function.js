@@ -181,5 +181,37 @@ function setCookie(name, value, days) {
 					+ '$'
 			document.getElementsByClassName("cart_totalinput")[0].value = total
 		}
+
+		function sendRequest(){
+			var getVal = $(".cart_row")
+		    var idUser = $("#idUser").val();
+		    var total = $(".cart_total")[0].innerText.split("$")[0];
+		    var shoppingCart = 
+		    	{
+		    		total: total,
+		    		idUser: idUser,
+		    		cartItems:[] 
+		    	};
+		    for (var i = 0; i < getVal.length; i++) {
+		    	var productPrice = getVal[i].getElementsByClassName("cart_price")[0].innerText;
+		    	var productId = getVal[i].getElementsByClassName("id_product")[0].value;
+		    	var productQuantity = getVal[i].getElementsByClassName("cart_input")[0].value;
+		    	shoppingCart['cartItems'].push({productId:productId,productPrice:productPrice,productQuantity:productQuantity})
+		    	
+			}
+			axios.post('/com.cyberlogitec/saveCart', 
+						{
+							product: JSON.stringify(shoppingCart)
+						}
+					
+					)
+				.then((response) => {
+					document.cookie = 'shoppingCart' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+					alert('Mua thanh cong')
+					window.location.href = '/com.cyberlogitec/smartphone';
+				}, (error) => {
+				  console.log(error);
+				});
+		}
 		
 		

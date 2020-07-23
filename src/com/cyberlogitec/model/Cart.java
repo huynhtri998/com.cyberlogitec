@@ -15,6 +15,12 @@ public class Cart {
 		this.total = total;
 		this.idUser = idUser;
 	}
+	
+	public Cart(Float total, Integer idUser) {
+		super();		
+		this.total = total;
+		this.idUser = idUser;
+	}
 
 	public Integer getIdCart() {
 		return idCart;
