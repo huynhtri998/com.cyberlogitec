@@ -17,19 +17,6 @@
 
 		<div class="main-content">
 				<div class="main-content-inner">
-					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
-							</li>
-
-							<li>
-								<a href="#">More Pages</a>
-							</li>
-							<li class="active">User Profile</li>
-						</ul><!-- /.breadcrumb -->
-					</div>
 
 					<div class="page-content">
 
@@ -140,7 +127,7 @@
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
-
+		<div th:include="common/cart :: confirm"></div>
 		<div th:replace="~{common/footer :: .footer}"></div>
 
 		<a href="#" id="btn-scroll-up"
@@ -166,7 +153,7 @@
 					+ "<"+"/script>");
 	</script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-
+	<script th:src="@{/js/cart-function.js}"></script>
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->
@@ -190,37 +177,8 @@
 	$("#imageUpload").change(function() {
 		readURL(this);
 	});
-	jQuery(function($) {
-		$(document).on('click', '.toolbar a[data-target]', function(e) {
-			e.preventDefault();
-			var target = $(this).data('target');
-			$('.widget-box.visible').removeClass('visible');//hide others
-			$(target).addClass('visible');//show target
-		});
-	});
-		jQuery(function($) {
-			$('#sidebar2').insertBefore('.page-content');
-
-			$('.navbar-toggle[data-target="#sidebar2"]').insertAfter(
-					'#menu-toggler');
-
-			$(document).on('settings.ace.two_menu',
-					function(e, event_name, event_val) {
-						if (event_name == 'sidebar_fixed') {
-							if ($('#sidebar').hasClass('sidebar-fixed')) {
-								$('#sidebar2').addClass('sidebar-fixed');
-								$('#navbar').addClass('h-navbar');
-							} else {
-								$('#sidebar2').removeClass('sidebar-fixed')
-								$('#navbar').removeClass('h-navbar');
-							}
-						}
-					})
-					.triggerHandler(
-							'settings.ace.two_menu',
-							[ 'sidebar_fixed',
-									$('#sidebar').hasClass('sidebar-fixed') ]);
-		})
+	
+		
 	</script>
 </body>
 </html>

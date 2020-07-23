@@ -1,216 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/header :: head">
-<style type="text/css">
-body {
-	font-family: "Open Sans", sans-serif;
-}
 
-h2 {
-	color: #000;
-	font-size: 26px;
-	font-weight: 300;
-	text-align: center;
-	text-transform: uppercase;
-	position: relative;
-	margin: 30px 0 80px;
-}
-
-h2 b {
-	color: #ffc000;
-}
-
-h2::after {
-	content: "";
-	width: 100px;
-	position: absolute;
-	margin: 0 auto;
-	height: 4px;
-	background: rgba(0, 0, 0, 0.2);
-	left: 0;
-	right: 0;
-	bottom: -20px;
-}
-
-.carousel {
-	margin: 50px auto;
-	padding: 0 70px;
-}
-
-.carousel .item {
-	min-height: 330px;
-	text-align: center;
-	overflow: hidden;
-}
-
-.carousel .item .img-box {
-	height: 160px;
-	width: 100%;
-	position: relative;
-}
-
-.carousel .item img {
-	max-width: 100%;
-	max-height: 100%;
-	display: inline-block;
-	position: absolute;
-	bottom: 0;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-}
-
-.carousel .item h4 {
-	font-size: 18px;
-	margin: 10px 0;
-}
-
-.carousel .item .btn {
-	color: #333;
-	border-radius: 0;
-	font-size: 11px;
-	text-transform: uppercase;
-	font-weight: bold;
-	background: none;
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	margin-top: 5px;
-	line-height: 16px;
-}
-
-.carousel .item .btn:hover, .carousel .item .btn:focus {
-	color: #fff;
-	background: #000;
-	border-color: #000;
-	box-shadow: none;
-}
-
-.carousel .item .btn i {
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 5px;
-}
-
-#carouselright1 {
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 5px;
-	font-size: 30px;
-	position: absolute;
-	top: 50%;
-	display: inline-block;
-	margin: -16px 0 0 0;
-	z-index: 5;
-	left: 0;
-	right: 0;
-	color: rgba(0, 0, 0, 0.8);
-	text-shadow: none;
-	font-weight: bold;
-	margin-left: -3px;
-	margin-right: -3px;
-}
-
-#carouselleft1 {
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 5px;
-	font-size: 30px;
-	position: absolute;
-	top: 50%;
-	display: inline-block;
-	margin: -16px 0 0 0;
-	z-index: 5;
-	left: 0;
-	right: 0;
-	color: rgba(0, 0, 0, 0.8);
-	text-shadow: none;
-	font-weight: bold;
-	margin-left: -3px;
-	margin-right: -3px;
-}
-
-.carousel .thumb-wrapper {
-	text-align: center;
-}
-
-.carousel .thumb-content {
-	padding: 15px;
-}
-
-.carousel .carousel-control {
-	height: 100px;
-	width: 40px;
-	background: none;
-	margin: auto 0;
-	background: rgba(0, 0, 0, 0.2);
-}
-
-.carousel .carousel-control i {
-	font-size: 30px;
-	position: absolute;
-	top: 50%;
-	display: inline-block;
-	margin: -16px 0 0 0;
-	z-index: 5;
-	left: 0;
-	right: 0;
-	color: rgba(0, 0, 0, 0.8);
-	text-shadow: none;
-	font-weight: bold;
-}
-
-.carousel .item-price {
-	font-size: 13px;
-	padding: 2px 0;
-}
-
-.carousel .item-price strike {
-	color: #999;
-	margin-right: 5px;
-}
-
-.carousel .item-price span {
-	color: #86bd57;
-	font-size: 110%;
-}
-
-.carousel .carousel-control.left i {
-	margin-left: -3px;
-}
-
-.carousel .carousel-control.left i {
-	margin-right: -3px;
-}
-
-.carousel .carousel-indicators {
-	bottom: -50px;
-}
-
-.carousel-indicators li, .carousel-indicators li.active {
-	width: 10px;
-	height: 10px;
-	margin: 4px;
-	border-radius: 50%;
-	border-color: transparent;
-}
-
-.carousel-indicators li {
-	background: rgba(0, 0, 0, 0.2);
-}
-
-.carousel-indicators li.active {
-	background: rgba(0, 0, 0, 0.6);
-}
-
-.star-rating li {
-	padding: 0;
-}
-
-.star-rating i {
-	font-size: 14px;
-	color: #ffc000;
-}
-</style>
 </head>
 
 <body class="no-skin">
@@ -522,7 +313,7 @@ h2::after {
 					+ "<"+"/script>");
 	</script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-
+	<script th:src="@{/js/cart-function.js}"></script>
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->
@@ -531,188 +322,7 @@ h2::after {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-	function setCookie(name, value, days) {
-		var expires = "";
-		if (days) {
-			var date = new Date();
-			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-			expires = "; expires=" + date.toUTCString();
-		}
-		document.cookie = name + "=" + (value || "") + expires + "; path=/";
-	}
-
-	function getCookie(name) {
-		var nameEQ = name + "=";
-		var ca = document.cookie.split(';');
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-		}
-		return null;
-	}
-		var add_cart = document.getElementsByClassName("btn_addToCart");
-		for (var i = 0; i < add_cart.length; i++) {
-			var add = add_cart[i];
-			add.addEventListener(
-							"click",
-							function(event) {
-
-								var button = event.target;
-								var product = button.parentElement.parentElement;
-								var img = product.parentElement
-										.getElementsByClassName("img_product")[0].src
-								var title = product
-										.getElementsByClassName("name_product")[0].innerText
-								var price = product
-										.getElementsByClassName("price_product")[0].innerText
-								var id = product
-										.getElementsByClassName("id_product")[0].value
-								addItemToCart(title, price, img, id)
-								// Khi thêm sản phẩm vào giỏ hàng thì sẽ hiển thị modal
-								//modal.style.display = "block";
-
-								//updatecart()
-							})
-		}
-		
-		function showCart(){
-		  var cartItems = document.getElementsByClassName('cart_items')[0]
-		  var cart_title = cartItems.getElementsByClassName('cart_name_product')
-		  var cart_id = cartItems.getElementsByClassName('id_product')	 
-		  var getVal = JSON.parse(getCookie('shoppingCart'))
-		  if (getVal != null) {
-			  for (var i = 0; i < getVal.length; i++) {
-				  var check = true
-				  for (var j = 0; j < cart_id.length; j++) {
-					  console.log(getVal[i].id + ' ' + cart_id[j].value)
-					if (getVal[i].id == cart_id[j].value) {
-						check = false
-					}
-				  }
-				  console.log(check)
-					if (check == true) {					
-			  var cartRow = document.createElement('div')
-			  cartRow.classList.add('cart_row')
-				  var cartRowContents = '<div class="row"><div class="col-xs-2">' + 
-					'<img class="img-responsive" src="' + getVal[i].img + '">' + 
-				'</div>'+
-				'<div class="col-xs-4">' + 
-					'<h4 class="product-name">' + 
-						'<strong class="cart_name_product">' + getVal[i].title + '</strong>' + 
-					'</h4>' + 
-				'</div>' + 
-				'<div class="col-xs-6">' + 
-					'<div class="col-xs-6 text-right">' + 
-						'<h6>' + 
-							'<strong>$ </strong><strong class="cart_price">' + getVal[i].price + '</strong>' + 
-							'<span class="text-muted">x</span>' + 
-						'</h6>' + 
-					'</div>' + 
-					'<div class="col-xs-4">' + 
-						'<input type="number" class="cart_input form-control input-sm" value="1">' + 
-					'</div>' + 
-					'<div class="col-xs-2">' + 
-						'<button type="button" id="'+getVal[i].id+'" class="btn btnDelete btn-link btn-xs">' + 
-							'<span class="glyphicon glyphicon-trash"> </span>' +
-						'</button>'+
-						'<input type="text" hidden="" class="id_product" value="'+getVal[i].id+'" name="lname">'
-						+ 
-					'</div>' + 
-				'</div>' + 
-			'</div>' +
-			'<hr>'
-		  		
-			  cartRow.innerHTML = cartRowContents
-			 
-			  cartItems.append(cartRow)
-					}
-				  }
-			  var remove_cart = document.getElementsByClassName("btnDelete");
-				for (var i = 0; i < remove_cart.length; i++) {
-					var button = remove_cart[i]
-					button.addEventListener(
-									"click",
-									function() {
-										var button_remove = event.target
-										var id_product = button_remove.parentElement.id
-										var a
-										console.log(id_product)
-										for (var j = 0; j < getVal.length; j++) {
-											if (id_product == getVal[j].id) {
-												getVal.splice(j,1)
-												a = getVal
-												 setCookie('shoppingCart',JSON.stringify(a), 7);
-											}
-										}
-										button_remove.parentElement.parentElement.parentElement.parentElement.parentElement
-												.remove()
-										
-										updatecart();
-									})
-				}
-				var quantity_input = document.getElementsByClassName("cart_input");
-				for (var i = 0; i < quantity_input.length; i++) {
-					var input = quantity_input[i];
-					console.log(input)
-					input.addEventListener("change", function(event) {
-					var input = event.target
-					if (isNaN(input.value) || input.value <= 0) {
-				      input.value = 1;
-				    }
-					updatecart()
-				})
-			}
-		  updatecart()
-		}
-		 
-		}
-
-		function addItemToCart(title, price, img, id) {
-			var check = true;
-			var cartItems = document.getElementsByClassName('cart_items')[0]
-			  var cart_title = cartItems.getElementsByClassName('cart_name_product')
-			for (var i = 0; i < cart_title.length; i++) {
-			    if (cart_title[i].innerText == title) {
-			    	check = false;
-			      alert('Sản Phẩm Đã Có Trong Giỏ Hàng')
-			      return
-			    }
-			  }
-			if(check == true){
-				if(getCookie('shoppingCart')){
-					  var objInner = {id:id, title:title, price:price, img:img};
-					  var getVal = JSON.parse(getCookie('shoppingCart'));
-					  getVal.push(objInner);
-					  setCookie('shoppingCart',JSON.stringify(getVal), 7);
-					  
-				  }
-				  else{
-					  var objInner = JSON.stringify([{id:id, title:title, price:price, img:img}]);
-					  setCookie('shoppingCart',objInner, 7);
-				  }
-			}
-		  
-		}
-		
-		//Update cart
-		function updatecart() {
-			var cart_item = document.getElementsByClassName("cart_items")[0];
-			var cart_rows = cart_item.getElementsByClassName("cart_row");
-			var total = 0;
-			for (var i = 0; i < cart_rows.length; i++) {
-				var cart_row = cart_rows[i]
-				var price_item = cart_row.getElementsByClassName("cart_price")[0]
-				var quantity_item = cart_row
-						.getElementsByClassName("cart_input")[0]
-				var price = parseFloat(price_item.innerText)
-				var quantity = quantity_item.value 
-				total = total + (price * quantity)
-			}
-			document.getElementsByClassName("cart_total")[0].innerText = total
-					+ '$'
-			
-		}
+	
 		
 		jQuery(function($) {
 			$('#sidebar2').insertBefore('.page-content');
@@ -763,6 +373,37 @@ h2::after {
 							});
 
 		})
+		
+		
+		function sendRequest(){
+			var getVal = $(".cart_row")
+		    var idUser = $("#idUser").val();
+		    var total = $(".cart_total")[0].innerText.split("$")[0];
+		    var shoppingCart = 
+		    	{
+		    		total: total,
+		    		idUser: idUser,
+		    		cartItems:[] 
+		    	};
+		    for (var i = 0; i < getVal.length; i++) {
+		    	var productPrice = getVal[i].getElementsByClassName("cart_price")[0].innerText;
+		    	var productId = getVal[i].getElementsByClassName("id_product")[0].value;
+		    	var productQuantity = getVal[i].getElementsByClassName("cart_input")[0].value;
+		    	shoppingCart['cartItems'].push({productId:productId,productPrice:productPrice,productQuantity:productQuantity})
+		    	
+			}
+			axios.post('/com.cyberlogitec/saveCart', 
+						{
+							product: JSON.stringify(shoppingCart)
+						}
+					
+					)
+				.then((response) => {
+				  console.log(response);
+				}, (error) => {
+				  console.log(error);
+				});
+		}
 	</script>
 </body>
 </html>

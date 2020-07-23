@@ -83,23 +83,27 @@
 							<div  class="row " style="margin-top: 40px;">
 							<th:block th:each="ProductByCategoryId: ${listProductByCategoryId}">
 								<th:block th:each="Product: ${ProductByCategoryId.product}">
-								<a th:href="@{/smartphonedetail/{id}(id=${Product.productId})}">
+								
 								<div class="col-md-3">
 									
 										<div class="img-box">
-											<img th:src="@{/img/ipad.jpg}"
+											<img class="img_product" th:src="@{/img/ipad.jpg}"
 												style="max-width: 30% !important; display: block; height: auto;"
 												alt="">
 										</div>
 										<div class="thumb-content">
-											<h4 th:utext="${Product.productName}" ></h4>
+										<a th:href="@{/smartphonedetail/{id}(id=${Product.productId})}">
+											<h4 class="name_product" th:utext="${Product.productName}" ></h4>
 											<p class="item-price">
 												<strike th:utext="${Product.productPrice}" ></strike> 
-												<span th:utext="${Product.productSalePrice}" ></span>
+												<input hidden="" th:value="${Product.productId}" type="text" class="id_product">
+												<span class="price_product" th:utext="${Product.productSalePrice}" ></span>
 											</p>
+											</a>
+											<button class="btn_addToCart btn btn-primary" >Add to Cart</button>
 										</div>
 									
-								</div></a></th:block>
+								</div></th:block>
 								</th:block>
 							</div>
 
@@ -158,7 +162,7 @@
 	<!-- ace scripts -->
 	<script th:src="@{/js/ace-elements.min.js}"></script>
 	<script th:src="@{/js/ace.min.js}"></script>
-
+	<script th:src="@{/js/cart-function.js}"></script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(function($) {

@@ -27,20 +27,20 @@
 
 					<div class="row">
 						<div class="col-xs-4 item-photo">
-							<img style="max-width: 100%;"
+							<img class="img_product" style="max-width: 100%;"
 								src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" />
 						</div>
 						<div class="col-xs-5" style="border: 0px solid gray">
 							<!-- Datos del vendedor y titulo del producto -->
-							<h3 th:utext="${product.productName}"></h3>
+							<h3 class="name_product" th:utext="${product.productName}"></h3>
 
 							<!-- Precios -->
 							<h6 class="title-price">
 								<small>Price</small>
 							</h6>
 							<strike th:utext="${product.productPrice}"></strike>
-							<h3 style="margin-top: 0px;" th:utext="${product.productSalePrice}"></h3>
-
+							<h3 class="price_product" style="margin-top: 0px;" th:utext="${product.productSalePrice}"></h3>
+							<input hidden="" th:value="${product.productId}" type="text" class="id_product">
 							<!-- Detalles especificos del producto -->
 							<div class="section">
 								<h6 class="title-attr" style="margin-top: 15px;">
@@ -70,10 +70,9 @@
 								 </div>  -->
 
 							<!-- Botones de compra -->
-							<!--<div class="section" style="padding-bottom:20px;">
-									 <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al carro</button>
-									 <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6>
-								 </div>   -->
+							<div class="section" style="padding-bottom:20px;">
+									 <button class="btn_addToCart btn btn-primary" >Add to Cart</button>
+								 </div>
 						</div>
 
 						<div class="col-xs-9">
@@ -92,7 +91,7 @@
 			</div>
 		</div>
 		<!-- /.main-content -->
-
+		<div th:include="common/cart :: confirm"></div>
 		<div th:replace="~{common/footer :: .footer}"></div>
 
 		<a href="#" id="btn-scroll-up"
@@ -118,7 +117,7 @@
 					+ "<"+"/script>");
 	</script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-
+	<script th:src="@{/js/cart-function.js}"></script>
 	<!-- page specific plugin scripts -->
 
 	<!-- ace scripts -->

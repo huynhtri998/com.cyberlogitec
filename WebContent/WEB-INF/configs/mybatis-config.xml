@@ -10,5 +10,6 @@
 		<typeAlias type="com.cyberlogitec.model.Category" alias="Category" />
 		<typeAlias type="com.cyberlogitec.model.Product" alias="Product" />
 		<typeAlias type="com.cyberlogitec.model.ProductCategory" alias="ProductCategory" />
+		<typeAlias type="com.cyberlogitec.model.Cart" alias="Cart" />
 	</typeAliases>
 </configuration>

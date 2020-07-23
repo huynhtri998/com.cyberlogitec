@@ -1,5 +1,5 @@
 <div th:fragment="confirm">
-<form th:action="@{/saveCart}" method="post">
+<!-- <form th:action="@{/saveCart/{id}(id=${userProfile.id})}" method="post"> -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -39,6 +39,7 @@
 														<h4 class="text-center">
 															Total <strong class="cart_total"></strong>
 														</h4>
+														<input hidden="" type="number" name="cartTotal" class="cart_totalinput" value="1">
 													</div>
 
 												</div>
@@ -54,11 +55,10 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary close-footer">Cancel</button>
-						<button type="button" class="btn btn-primary order">Checkout</button>
+						<button type="button" id="checkout_btn"  onclick="sendRequest();" class="btn btn-primary order">Checkout</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
-</form>
+<!-- </form> -->

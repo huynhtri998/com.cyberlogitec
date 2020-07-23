@@ -1,23 +1,19 @@
 package com.cyberlogitec.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 public class Cart {
 	private Integer idCart;
-	private Integer idProduct;
-	private String quantity;
-	private String total;
+	private Integer idUser;
+	private Float total;
 	
 	public Cart() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public Cart(Integer idCart, String quantity, String total, Integer idProduct) {
+	public Cart(Integer idCart, Float total, Integer idUser) {
 		super();
-		this.idCart = idCart;
-		this.quantity = quantity;
+		this.idCart = idCart;		
 		this.total = total;
-		this.idProduct = idProduct;
+		this.idUser = idUser;
 	}
 
 	public Integer getIdCart() {
@@ -28,28 +24,20 @@ public class Cart {
 		this.idCart = idCart;
 	}
 
-	public String getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getTotal() {
+	public Float getTotal() {
 		return total;
 	}
 
-	public void setTotal(String total) {
+	public void setTotal(Float total) {
 		this.total = total;
 	}
 
-	public Integer getIdProduct() {
-		return idProduct;
+	public Integer getIdUser() {
+		return idUser;
 	}
 
-	public void setIdProduct(Integer idProduct) {
-		this.idProduct = idProduct;
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
 	}
 	
 	

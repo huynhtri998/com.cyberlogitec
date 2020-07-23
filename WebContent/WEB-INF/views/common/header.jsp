@@ -33,6 +33,11 @@
 <!-- inline styles related to this page -->
 
 <!-- ace settings handler -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 <script th:src="@{/js/ace-extra.min.js}"></script>
 
 <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
